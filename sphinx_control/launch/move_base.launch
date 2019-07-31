@@ -1,0 +1,8 @@
+<launch>
+    <!-- driver node -->
+    <node name="sphinx_driver" pkg="sphinx_control" type="driver_node.py"/>
+    <!-- Camer node -->
+    <include file="$(find usb_cam)/launch/usb_cam-test.launch"/>
+    <!-- Launch  camera web server -->
+    <node name="sphinx_camera" pkg="web_video_server" type="web_video_server"/>
+</launch>

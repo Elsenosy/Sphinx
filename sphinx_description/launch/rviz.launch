@@ -1,0 +1,14 @@
+<launch>
+  <!--** Load the robot urdf **-->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find sphinx_description)/urdf/sphinx.urdf.xacro'" />
+  
+  <!--** Run joint state (Tf) node and robot state node **-->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="TRUE"/>
+  </node>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
+  <!--** Run RViz with configuration **-->
+  <node pkg="rviz" name="rviz" type="rviz" args="-d $(find sphinx_description)/rviz/view_robot.rviz"/>
+
+</launch>

@@ -1,0 +1,37 @@
+<launch>
+    <arg name="gui" default="true" />
+      <arg name="debug" default="false"/>
+      <arg name="paused" default="false"/>
+      <arg name="use_sim_time" default="true"/>
+      <arg name="headless" default="false"/>
+  
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find sphinx_description)/urdf/sphinx.urdf.xacro'" />
+      <!-- ** Run Gazebo empty world** -->
+      <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+  
+    <rosparam file="$(find sphinx_simulation)/config/joint_state.yaml" command="load"/>
+    <rosparam file="$(find sphinx_simulation)/config/skid_steer.yaml" command="load"/>
+
+      <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen" args="-param robot_description -urdf -model sphinx" respawn="false"/>
+
+    <!-- Run the control manager -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="true" 
+    args="sphinx/joint_state_controller sphinx/sphinx_skid_steer_controller"/>
+  
+  
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false"/>
+
+    <!-- Skid steer node -->
+    <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+      <param name="default_topic" value="/sphinx/sphinx_skid_steer_controller/cmd_vel"/>
+    </node>
+     <!--** Run RViz with configuration **-->
+    <node pkg="rviz" name="rviz" type="rviz" args="-d $(find sphinx_description)/rviz/config.rviz"/>
+  
+  </launch>

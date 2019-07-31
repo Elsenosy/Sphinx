@@ -1,0 +1,10 @@
+<launch>
+    <!-- Load rosserial Arduino skitch launcher -->
+    <node name="serial_node" pkg="rosserial_python" type="serial_node.py" args="/dev/ttyACM0"/>
+    <!-- driver node -->
+    <node name="sphinx_driver" pkg="sphinx_control" type="driver_node_ultrasonic.py"/>
+    <!-- Camer node -->
+    <include file="$(find usb_cam)/launch/usb_cam-test.launch"/>
+    <!-- Launch  camera web server -->
+    <node name="sphinx_camera" pkg="web_video_server" type="web_video_server"/>
+</launch>

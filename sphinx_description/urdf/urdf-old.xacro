@@ -1,0 +1,436 @@
+<?xml version="1.0"?>
+
+<robot name="sphinx" xmlns:xacro="http://ros.org/wiki/xacro">
+<material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="black">
+    <color rgba="0 0 0.0 1"/>
+  </material>
+	<link name="base_link">
+		<visual>
+			<geometry>
+				<box size="0.4 0.3 0.05"/>
+			</geometry>
+			<material name="blue"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="0.4 0.3 0.05"/>
+			</geometry>	
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<link name="stand-front-left">
+		<visual>
+			<geometry>
+				<cylinder radius="0.01" length="0.2"/>
+			</geometry>				
+			<origin xyz=".17 .11 .06"/>
+			<material name="white">
+				<color rgba="3.0 3.0 3.0 0.8"/>
+			</material>
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.01" length="0.2"/>
+			</geometry>	
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="joint_front_stand" type="fixed">
+		<parent link="base_link"/>
+		<child link="stand-front-left"/>
+	</joint>
+
+	<link name="stand-back-left">
+		<visual>
+			<geometry>
+				<cylinder radius="0.01" length="0.2"/>
+			</geometry>	
+			<origin xyz="-.17 .11 .06"/>
+			<material name="white">
+				<color rgba="3.0 3.0 3.0 0.8"/>
+			</material>			
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.01" length="0.2"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="joint_back_left_stand" type="fixed">
+		<parent link="base_link"/>
+		<child link="stand-back-left"/>
+	</joint>
+
+	<link name="stand-front-right">
+		<visual>
+			<geometry>
+				<cylinder radius="0.01" length="0.2"/>
+			</geometry>	
+			<origin xyz=".17 -.11 .06"/>
+			<material name="white">
+				<color rgba="3.0 3.0 3.0 0.8"/>
+			</material>
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.01" length="0.2"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="joint_front_right_stand" type="fixed">
+		<parent link="base_link"/>
+		<child link="stand-front-right"/>
+	</joint>
+
+	<link name="stand-back-right">
+		<visual>
+			<geometry>
+				<cylinder radius="0.01" length="0.2"/>
+			</geometry>	
+			<origin xyz="-.17 -.11 .06"/>
+			<material name="white">
+				<color rgba="3.0 3.0 3.0 0.8"/>
+			</material>
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.01" length="0.2"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="joint_back_right_stand" type="fixed">
+		<parent link="base_link"/>
+		<child link="stand-back-right"/>
+	</joint>
+
+	<link name="front_right_wheel_link">
+		<visual>
+			<geometry>
+				<cylinder radius="0.005" length="0.105"/>
+			</geometry>	
+			<origin xyz=".14 -.15 0" rpy="1.57 0 0" />
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.005" length="0.105"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="joint_wheel_link_front_right" type="fixed">
+		<parent link="base_link"/>
+		<child link="front_right_wheel_link"/>
+	</joint>
+
+
+	<link name="back_right_wheel_link">
+		<visual>
+			<geometry>
+				<cylinder radius="0.005" length="0.105"/>
+			</geometry>	
+			<origin xyz="-.14 -.15 0" rpy="1.57 0 0" />
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.005" length="0.105"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="joint_wheel_back_right" type="fixed">
+		<parent link="base_link"/>
+		<child link="back_right_wheel_link"/>
+	</joint>
+
+	<link name="back_left_wheel_link">
+		<visual>
+			<geometry>
+				<cylinder radius="0.005" length="0.105"/>
+			</geometry>	
+			<origin xyz="-.14 .15 0" rpy="1.57 0 0" />
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.005" length="0.105"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="joint_wheel_back_left" type="fixed">
+		<parent link="base_link"/>
+		<child link="back_left_wheel_link"/>
+	</joint>
+
+	<link name="front_left_wheel_link">
+		<visual>
+			<geometry>
+				<cylinder radius="0.005" length="0.105"/>
+			</geometry>	
+			<origin xyz=".14 .15 0" rpy="1.55 0 0" />
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.005" length="0.105"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+	
+	<joint name="joint_wheel_front_left" type="fixed">
+		<parent link="base_link"/>
+		<child link="front_left_wheel_link"/>
+	</joint>
+
+	<link name="front-left-wheel">
+		<visual>
+			<geometry>
+				<!-- <cylinder radius="0.065" length="0.065"/> -->
+				<mesh filename="package://sphinx_description/meshes/model.dae" scale=".07 .07 .07"/>
+			</geometry>
+			<origin xyz=".11 .144 -.07" rpy="0 0 -3.15" />
+          <material name="black"/>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/model.dae" scale=".07 .07 .07"/>
+			</geometry>			
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="front_left_wheel_joint" type="continuous">
+		<parent link="base_link"/>
+		<child link="front-left-wheel"/>
+    <origin xyz=".14 .198 0" rpy="0 0 0" />
+    <axis xyz="0.0 1.0 0.0"/>
+	</joint>
+
+	<link name="front-right-wheel">
+		<visual>
+			<geometry>
+				<!-- <cylinder radius="0.065" length="0.065"/> -->
+				<mesh filename="package://sphinx_description/meshes/model.dae" scale=".07 .07 .07"/>
+			</geometry>
+			<origin xyz="-.11 -.144 -.07" rpy="0 0 0" />
+           	<material name="black"/>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/model.dae" scale=".07 .07 .07"/>
+			</geometry>			
+		</collision>
+		<inertial>
+		<mass value="10"/>
+		<inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+		</inertial>
+	</link>
+
+	<joint name="front_right_wheel_joint" type="continuous">
+		<parent link="base_link"/>
+		<child link="front-right-wheel"/>
+    <origin xyz=".14 -.198 0" rpy="0 0 0" />
+    <axis xyz="0.0 1.0 0.0"/>
+	</joint>
+
+	<link name="back-right-wheel">
+		<visual>
+			<geometry>
+				<!-- <cylinder radius="0.065" length="0.065"/> -->
+				<mesh filename="package://sphinx_description/meshes/model.dae" scale=".07 .07 .07"/>
+			</geometry>
+			<origin xyz="-.11 -.144 -.07" rpy="0 0 0" />
+           	<material name="black"/>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/model.dae" scale=".07 .07 .07"/>
+			</geometry>			
+		</collision>
+
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="back_right_wheel_joint" type="continuous">
+		<parent link="base_link"/>
+		<child link="back-right-wheel"/>
+    <origin xyz="-.14 -.198 0" rpy="0 0 0" />
+    <axis xyz="0.0 1.0 0.0"/>
+	</joint>
+
+	<link name="back-left-wheel">
+		<visual>
+			<geometry>
+				<!-- <cylinder radius="0.065" length="0.065"/> -->
+				<mesh filename="package://sphinx_description/meshes/model.dae" scale=".07 .07 .07"/>
+			</geometry>
+			<!-- <origin xyz="-.11 -.144 -.07" rpy="0 0 0" /> -->
+			<origin xyz=".12 .144 -.07" rpy="0 0 -3.15" />
+            <material name="black"/>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/model.dae" scale=".07 .07 .07"/>
+			</geometry>			
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+
+	<joint name="back_left_wheel_joint" type="continuous">
+		<parent link="base_link"/>
+		<child link="back-left-wheel"/>
+    <origin xyz="-.14 .198 0" rpy="0 0 0" />
+    <axis xyz="0.0 1.0 0.0"/>
+	</joint>
+
+
+	<link name="cover_link">
+		<visual>
+			<geometry>
+				<box size="0.4 0.3 0.05"/>
+			</geometry>	
+			<origin xyz="0 0 0" rpy="0 0 0 "/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="0.4 0.3 0.05"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	</link>
+	<joint name="cover_link_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="cover_link"/>
+		<origin xyz="0 0 .12"/>
+	</joint>
+
+	<link name="back_link">
+		<visual>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/back.dae" scale="2 2 2"/>
+			</geometry>	
+			<origin xyz="-.19 -.26 -.19" rpy="0 -1.6 0"/>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/back.dae" scale="2 2 2"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+
+	</link>
+		<joint name="back_link_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="back_link"/>
+		<origin xyz="0 0 0"/>
+	</joint>
+
+	<link name="bumper">
+		<visual>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/bumper.dae" scale=".25 .25 .25"/>
+			</geometry>	
+			<origin xyz=".27 .089 -.02" rpy="0 0 1.55"/>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/bumper.dae" scale=".25 .25 .25"/>
+			</geometry>				
+		</collision>
+	<inertial>
+      <mass value="10"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+	
+	</link>
+	<joint name="bumper_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="bumper"/>
+	</joint>
+
+	<link name="laser_link">
+		<visual>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/hokuyo.dae" scale="1.0 1.0 1.0"/>
+			</geometry>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://sphinx_description/meshes/hokuyo.dae" scale="1.0 1.0 1.0"/>
+			</geometry>
+		</collision>
+		<inertial>
+    		<mass value="1"/>
+      		<inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    	</inertial>
+	</link>	
+
+	<joint name="laser_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_link"/>
+		<origin xyz=".14 0 .18" rpy="0 0 0 "/>
+	</joint>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/sphinx</robotNamespace>
+	  <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+  
+</robot>
