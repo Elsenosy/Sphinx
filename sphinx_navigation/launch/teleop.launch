@@ -1,0 +1,5 @@
+<launch>
+    <node name="sphinx_keyboard" pkg="turtlebot_teleop" type="turtlebot_teleop_key" output="screen">
+        <remap from="sphinx_keyboard/cmd_vel" to="sphinx/sphinx_skid_steer_controller/cmd_vel"/>
+    </node>
+</launch>

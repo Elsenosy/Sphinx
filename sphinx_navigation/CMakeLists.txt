@@ -205,3 +205,6 @@ target_link_libraries(tf_listener ${catkin_LIBRARIES})
 
 add_executable(my_tf_broadcaster src/my_tf_broadcaster)
 target_link_libraries(my_tf_broadcaster ${catkin_LIBRARIES})
+
+add_executable(odom_publisher src/odom_publisher.cpp)
+target_link_libraries(odom_publisher ${catkin_LIBRARIES})

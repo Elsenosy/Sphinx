@@ -1,14 +1,14 @@
 <launch>
     <arg name="gui" default="true" />
-      <arg name="debug" default="false"/>
-      <arg name="paused" default="false"/>
-      <arg name="use_sim_time" default="true"/>
-      <arg name="headless" default="false"/>
-      <arg name="world" value="world1"/>
-  
-        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find sphinx_description)/urdf/sphinx.urdf.xacro'" />
-      <!-- ** Run Gazebo empty world** -->
-      <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" default="false"/>
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="world" value="world1"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find sphinx_description)/urdf/sphinx.urdf.xacro'" />
+    <!-- ** Run Gazebo empty world** -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="debug" value="$(arg debug)" />
         <arg name="gui" value="$(arg gui)" />
         <arg name="paused" value="$(arg paused)"/>
@@ -23,9 +23,8 @@
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen" args="-param robot_description -urdf -model sphinx" respawn="false"/>
 
     <!-- Run the control manager -->
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="true" 
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" 
     args="sphinx/joint_state_controller sphinx/sphinx_skid_steer_controller"/>
-  
   
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false"/>
 
