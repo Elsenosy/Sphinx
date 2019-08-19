@@ -198,13 +198,3 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(tf_broadcaster src/tf_broadcaster.cpp)
-add_executable(tf_listener src/tf_listener.cpp)
-target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
-target_link_libraries(tf_listener ${catkin_LIBRARIES})
-
-add_executable(my_tf_broadcaster src/my_tf_broadcaster)
-target_link_libraries(my_tf_broadcaster ${catkin_LIBRARIES})
-
-add_executable(odom_publisher src/odom_publisher.cpp)
-target_link_libraries(odom_publisher ${catkin_LIBRARIES})
